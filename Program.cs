@@ -97,7 +97,7 @@ namespace Прграммирование2._2 {
 
     public class Zoomanager {
       List<Animal> listForAnimals = new List<Animal>();
-      public static Zoomanager Instance {
+      public static s_Zoomanager Instance {
         get {
           if (instance == null) instance = new Zoomanager();
           return instance;
@@ -107,13 +107,14 @@ namespace Прграммирование2._2 {
         listForAnimals.Add(animal);
       }
       public void ShowInfo() {
-        int zero = 0; 
+        int zero = 0;
+        int one = 1;
 
         if (listForAnimals.Count == zero) {
           Console.WriteLine("No found animal");
         }
         for (int indexI = 0; indexI < listForAnimals.Count; ++indexI) {
-          Console.WriteLine($"\nAnimal { indexI + 1}: ");
+          Console.WriteLine($"\nAnimal { indexI + one}: ");
           listForAnimals[indexI].GetInfo();
         }
         Console.WriteLine(); 
