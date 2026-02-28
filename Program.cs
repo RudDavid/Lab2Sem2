@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Прграммирование2._2.Program;
+using static Programming2._2.Program;
 
 
-namespace Прграммирование2._2 {
+namespace Programming2._2 {
   internal class Program {
 
     public abstract class Animal {
@@ -97,9 +97,11 @@ namespace Прграммирование2._2 {
 
     public class Zoomanager {
       List<Animal> listForAnimals = new List<Animal>();
-      public static s_Zoomanager Instance {
+      public static Zoomanager s_Instance {
         get {
-          if (instance == null) instance = new Zoomanager();
+          if (instance == null) {
+            instance = new Zoomanager();
+          }
           return instance;
         }
       }
@@ -114,62 +116,59 @@ namespace Прграммирование2._2 {
           Console.WriteLine("No found animal");
         }
         for (int indexI = 0; indexI < listForAnimals.Count; ++indexI) {
-          Console.WriteLine($"\nAnimal { indexI + one}: ");
+          Console.WriteLine($"\nAnimal {indexI + one}: ");
           listForAnimals[indexI].GetInfo();
         }
-        Console.WriteLine(); 
+        Console.WriteLine();
       }
-      private Zoomanager() {}
+      private Zoomanager() { }
       private static Zoomanager instance;
     }
 
     static void Main(string[] args) {
 
-      int zero = 0;
-      int one = 1;
-      int two = 2;
-      int three = 3;
-      int four = 4;
-      int five = 5;
-      int six = 6;
-      bool isrun = true;
+      int zeroButton = 0;
+      int secondButton = 2;
+      int sixthButton = 6;
+      bool isRun = true;
 
-      while (isrun) {
+      while (isRun) {
         Console.Write("Enter name animal: ");
         string name = Console.ReadLine();
-        while (name.Length < two || !name.All(char.IsLetter)) {
+        while (name.Length < secondButton || !name.All(char.IsLetter)) {
           Console.Write("Please enter the correct animal name.");
           name = Console.ReadLine();
         }
         Console.Write("Enter age animal: ");
         int age = Convert.ToInt32(Console.ReadLine());
-        while (age < zero) {
+        while (age <= zeroButton) {
           Console.Write("Please enter the correct animal age.");
           age = Convert.ToInt32(Console.ReadLine());
         }
+        Console.Write("Enter animal habitat: ");
         string habitat = Console.ReadLine();
         while (!habitat.All(char.IsLetter)) {
           Console.Write("Please enter the correct animal habitat.");
           habitat = Console.ReadLine();
         }
-
+        Console.Write("Enter animal food: ");
         string food = Console.ReadLine();
         while (!food.All(char.IsLetter)) {
           Console.Write("Please enter the correct animal food.");
           food = Console.ReadLine();
         }
-      
+
         Console.Write("\nWhich subclass would you like to create?\n0 - Finish program\n1 - Mammal\n2 - Bird\n" +
           "3 - Fish\n4 - Reptile\n5 - Amphibian\n6 - Information about all animal.\nAnd your choice: ");
         int classType = Convert.ToInt32(Console.ReadLine());
-        while(classType < zero || classType > six) {
+        while (classType < zeroButton || classType > sixthButton) {
           Console.Write("PLease enter correct number aperation");
           classType = Convert.ToInt32(Console.ReadLine());
         }
 
         switch (classType) {
           case 0:
-            isrun = false; 
+            isRun = false;
             break;
 
           case 1:
@@ -180,19 +179,19 @@ namespace Прграммирование2._2 {
               fur = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
             }
             Mammal mammalAnimal = new Mammal(name, age, habitat, food, fur);
-            Zoomanager.Instance.AddAnimalAtList(mammalAnimal);
+            Zoomanager.s_Instance.AddAnimalAtList(mammalAnimal);
             mammalAnimal.GetInfo();
             break;
 
           case 2:
             Console.Write("Please enter the bird wing span: ");
             int span = Convert.ToInt32(Console.ReadLine());
-            while (span <= zero) {
+            while (span <= zeroButton) {
               Console.Write("Please enter the correct wing span: ");
               span = Convert.ToInt32(Console.ReadLine());
             }
             Bird littleBird = new Bird(name, age, habitat, food, span);
-            Zoomanager.Instance.AddAnimalAtList(littleBird);
+            Zoomanager.s_Instance.AddAnimalAtList(littleBird);
             littleBird.GetInfo();
             break;
 
@@ -204,7 +203,7 @@ namespace Прграммирование2._2 {
               waterType = Console.ReadLine();
             }
             Fish shark = new Fish(name, age, habitat, food, waterType);
-            Zoomanager.Instance.AddAnimalAtList(shark);
+            Zoomanager.s_Instance.AddAnimalAtList(shark);
             shark.GetInfo();
             break;
 
@@ -213,10 +212,10 @@ namespace Прграммирование2._2 {
             bool venom = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
             while (venom != true && venom != false) {
               Console.Write("Please enter 1 or 0: ");
-              fur = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+              venom = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
             }
             Reptile lizard = new Reptile(name, age, habitat, food, venom);
-            Zoomanager.Instance.AddAnimalAtList(lizard);
+            Zoomanager.s_Instance.AddAnimalAtList(lizard);
             lizard.GetInfo();
             break;
 
@@ -224,16 +223,16 @@ namespace Прграммирование2._2 {
             Console.Write("Please enter the amphibian's humidity level in percent: ");
             int moisture = Convert.ToInt32(Console.ReadLine());
             int moistureBorder = 100;
-            while (moisture < zero || moisture > moistureBorder) {
+            while (moisture < zeroButton || moisture > moistureBorder) {
               Console.Write("Please enter the correct amphibian's humidity level in percent.");
               moisture = Convert.ToInt32(Console.ReadLine());
             }
             Amphibian toad = new Amphibian(name, age, habitat, food, moisture);
-            Zoomanager.Instance.AddAnimalAtList(toad);
+            Zoomanager.s_Instance.AddAnimalAtList(toad);
             toad.GetInfo();
             break;
           case 6:
-            Zoomanager.Instance.ShowInfo();
+            Zoomanager.s_Instance.ShowInfo();
             break;
         }
       }
